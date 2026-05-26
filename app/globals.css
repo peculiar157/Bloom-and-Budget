@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+:root {
+  --sage-50: #f4f7f4;
+  --sage-100: #e6ede6;
+  --sage-200: #cddcce;
+  --sage-300: #a8c2aa;
+  --sage-400: #7da281;
+  --sage-500: #5a8260;
+  --sage-600: #46694c;
+  --sage-700: #38543e;
+  --cream-50: #fdfcf8;
+  --cream-100: #faf7f0;
+  --cream-200: #f5eedc;
+  --gold-400: #d4a843;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--cream-50);
+  color: #2e4433;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  letter-spacing: -0.01em;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--cream-100); }
+::-webkit-scrollbar-thumb { background: var(--sage-300); border-radius: 999px; }
+::selection { background: #cddcce; color: #27392c; }
+
+.masonry-grid { columns: 1; column-gap: 1.5rem; }
+@media (min-width: 640px) { .masonry-grid { columns: 2; } }
+@media (min-width: 1024px) { .masonry-grid { columns: 3; } }
+@media (min-width: 1280px) { .masonry-grid { columns: 4; } }
+.masonry-item { break-inside: avoid; margin-bottom: 1.5rem; }
+
+.floral-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--sage-400);
+}
+.floral-divider::before,
+.floral-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--sage-300), transparent);
+}
+
+.card-hover {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(70, 105, 76, 0.15);
+}
+
+.link-underline { position: relative; }
+.link-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--sage-500);
+  transition: width 0.3s ease;
+}
+.link-underline:hover::after { width: 100%; }
+
+.category-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-family: 'DM Sans', system-ui, sans-serif;
+}
+
+.newsletter-input:focus {
+  outline: none;
+  border-color: var(--sage-400);
+  box-shadow: 0 0 0 3px rgba(125, 162, 129, 0.2);
+}
