@@ -30,7 +30,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
     : posts;
 
   return (
-    <>
+    <div>
       <section className="bg-sage-800 text-cream-50 pt-20 pb-16 px-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-5">
           <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
@@ -114,6 +114,6 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
       </section>
 
       <Newsletter />
-    </>
+    </div>
   );
 }
