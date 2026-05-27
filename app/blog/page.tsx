@@ -1,12 +1,9 @@
+"use client";
+
 import { posts, type Category } from "@/lib/posts";
 import PostCard from "@/components/PostCard";
 import Newsletter from "@/components/Newsletter";
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Blog",
-  description: "Explore all posts on budgeting, saving, side hustles, and making money online.",
-};
+import { useSearchParams } from "next/navigation";
 
 const allCategories: Category[] = [
   "Budgeting",
@@ -17,13 +14,9 @@ const allCategories: Category[] = [
   "Debt Free",
 ];
 
-interface BlogPageProps {
-  searchParams: Promise<{ category?: string }>;
-}
-
-export default async function BlogPage({ searchParams }: BlogPageProps) {
-  const params = await searchParams;
-  const activeCategory = params.category as Category | undefined;
+export default function BlogPage() {
+  const searchParams = useSearchParams();
+  const activeCategory = searchParams.get("category") as Category | null;
 
   const filtered = activeCategory
     ? posts.filter((p) => p.category === activeCategory)
@@ -31,24 +24,25 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
 
   return (
     <div>
-      <section className="bg-sage-800 text-cream-50 pt-20 pb-16 px-6 relative overflow-hidden">
-        <div className="relative max-w-7xl mx-auto text-center">
-          <p className="font-dm text-sage-300 text-sm tracking-widest uppercase mb-4">The Blog</p>
+      <section className="bg-sage-800 text-cream-50 pt-20 pb-16 px-6">
+        <div className="max-w-7xl mx-auto text-center">
+          <p className="font-dm text-sage-300 text-sm tracking-widest uppercase mb-4">
+            The Blog
+          </p>
           <h1 className="font-cormorant text-5xl md:text-6xl font-semibold text-cream-50 mb-4">
             Money Wisdom, Practically Served
           </h1>
           <p className="font-dm text-sage-300 max-w-xl mx-auto">
             Guides, strategies, and real talk on building a financial life you are proud of.
-            No jargon, no judgment.
           </p>
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-6 lg:px-8 py-4">
+      <section className="max-w-7xl mx-auto px-6 lg:px-8 py-4 border-b border-sage-100">
         <div className="flex gap-2 py-4 overflow-x-auto">
           
             href="/blog"
-            className="category-pill flex-shrink-0 bg-sage-600 text-white"
+            className="category-pill flex-shrink-0 bg-sage-100 text-sage-700"
           >
             All Posts
           </a>
